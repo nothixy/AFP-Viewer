@@ -1,0 +1,10 @@
+<resources>
+    <style name="Theme.AFPViewer" parent="Theme.MaterialComponents.DayNight.NoActionBar">
+        <item name="colorPrimary">#325aff</item>
+        <item name="colorPrimaryVariant">#7b87ff</item>
+        <item name="colorOnPrimary">@color/black</item>
+        <item name="colorSecondary">#ff325b</item>
+        <item name="colorSecondaryVariant">#ff6f88</item>
+        <item name="colorOnSecondary">@color/black</item>
+    </style>
+</resources>

@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="anon">Mode anonyme</string>
+    <string name="temp">Accès temporaire (code d\'authentification)</string>
+    <string name="perm">Accès permanent (compte AFP)</string>
+    <string name="arabic">Arabe</string>
+    <string name="deutsch">Allemand</string>
+    <string name="english">Anglais</string>
+    <string name="spanish">Espagnol</string>
+    <string name="french">Français</string>
+    <string name="portuguese">Portugais</string>
+    <string name="chinese_china">Chinois - Chine</string>
+    <string name="chinese_taiwan">Chinois - Taïwan</string>
+    <string name="login">Connexion</string>
+    <string name="loginmode">Mode de connexion</string>
+    <string name="accesscode">Code d\'accès</string>
+    <string name="username">Nom d\'utilisateur</string>
+    <string name="password">Mot de passe</string>
+    <string name="newssettings">Paramètres des actualités</string>
+    <string name="numbertoshow">Nombre d\'articles à afficher</string>
+    <string name="topics">Sujets à suivre (liste séparée par des virgules)</string>
+    <string name="lang">Langue</string>
+    <string name="sourcecode">Code source</string>
+    <string name="share">Partager</string>
+    <string name="mlt">Plus dans ce style</string>
+    <string name="airplane_icon">Icone d\'avion</string>
+    <string name="offline">Pas de connexion internet</string>
+    <string name="nothing">Rien n\'a été trouvé</string>
+    <string name="settings">Réglages</string>
+    <string name="default_feed">Flux par défaut</string>
+    <string name="user_feed">Flux utilisateur</string>
+    <string name="saved">Sauvegardé</string>
+    <string name="about">A propos</string>
+</resources>

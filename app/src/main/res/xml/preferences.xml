@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="utf-8"?>
+<PreferenceScreen xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:android="http://schemas.android.com/apk/res/android">
+    <PreferenceCategory android:title="@string/login">
+        <ListPreference
+            android:defaultValue="0"
+            android:entries="@array/loginmode"
+            android:entryValues="@array/loginmode_values"
+            android:key="loginMode"
+            android:title="@string/loginmode" />
+        <EditTextPreference
+            android:enabled="false"
+            android:key="accessCode"
+            app:useSimpleSummaryProvider="true"
+            android:selectAllOnFocus="true"
+            android:singleLine="true"
+            android:title="@string/accesscode" />
+        <EditTextPreference
+            android:enabled="false"
+            android:key="username"
+            app:useSimpleSummaryProvider="true"
+            android:selectAllOnFocus="true"
+            android:singleLine="true"
+            android:title="@string/username" />
+        <EditTextPreference
+            android:enabled="false"
+            android:key="password"
+            app:useSimpleSummaryProvider="true"
+            android:selectAllOnFocus="true"
+            android:singleLine="true"
+            android:title="@string/password" />
+    </PreferenceCategory>
+    <PreferenceCategory android:title="@string/newssettings">
+        <SeekBarPreference
+            android:max="1000"
+            app:min="1"
+            app:key="number"
+            android:defaultValue="50"
+            app:showSeekBarValue="true"
+            app:title="@string/numbertoshow" />
+        <EditTextPreference
+            android:key="topics"
+            android:selectAllOnFocus="true"
+            app:useSimpleSummaryProvider="true"
+            android:singleLine="true"
+            android:title="@string/topics" />
+        <ListPreference
+            android:defaultValue="false"
+            android:entries="@array/lang"
+            android:entryValues="@array/lang_values"
+            app:defaultValue="en"
+            android:key="lang"
+            android:title="@string/lang"
+            app:useSimpleSummaryProvider="true" />
+    </PreferenceCategory>
+    <PreferenceCategory android:title="@string/about">
+        <Preference
+            android:id="@+id/sourcecode"
+            android:summary="https://gitlab.com/srgoti/afpviewer"
+            android:title="@string/sourcecode" >
+            <intent android:action="android.intent.action.VIEW"
+                android:data="https://gitlab.com/srgoti/afpviewer" />
+        </Preference>
+    </PreferenceCategory>
+</PreferenceScreen>

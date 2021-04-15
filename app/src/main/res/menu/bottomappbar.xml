@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <item
+        android:id="@+id/settings"
+        android:checkable="true"
+        android:enabled="true"
+        android:icon="@drawable/settings"
+        android:title="@string/settings"
+        android:visible="true"
+        app:showAsAction="ifRoom" />
+    <item
+        android:id="@+id/defaultfeed"
+        android:checkable="true"
+        android:enabled="true"
+        android:icon="@drawable/feed"
+        android:title="@string/default_feed"
+        android:visible="true"
+        app:showAsAction="ifRoom" />
+    <item
+        android:id="@+id/userfeed"
+        android:checkable="true"
+        android:enabled="true"
+        android:icon="@drawable/person"
+        android:title="@string/user_feed"
+        android:visible="true"
+        app:showAsAction="ifRoom" />
+    <item
+        android:id="@+id/saved"
+        android:checkable="true"
+        android:enabled="true"
+        android:icon="@drawable/star"
+        android:title="@string/saved"
+        android:visible="true"
+        app:showAsAction="ifRoom" />
+</menu>
