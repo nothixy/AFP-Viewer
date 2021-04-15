@@ -119,11 +119,11 @@ class MainActivity: AppCompatActivity() {
                 super.onChildDraw(c, recyclerView, viewHolder, dX, dY, actionState, isCurrentlyActive)
                 val paint = Paint()
                 if (dX > 0) {
-                    paint.color = Color.parseColor("#0000ff")
+                    paint.color = Color.parseColor("#325aff")
                     c.drawRect(viewHolder.itemView.left.toFloat(), viewHolder.itemView.top.toFloat(), viewHolder.itemView.left.toFloat() + dX, viewHolder.itemView.bottom.toFloat(), paint)
                     c.drawBitmap(starBitmap, viewHolder.itemView.left.toFloat() + starBitmap.width / 2, viewHolder.itemView.top.toFloat() + (viewHolder.itemView.height - starBitmap.height) / 2, paint)
                 } else {
-                    paint.color = Color.parseColor("#ff0000")
+                    paint.color = Color.parseColor("#ff325b")
                     c.drawRect(viewHolder.itemView.right.toFloat() + dX, viewHolder.itemView.top.toFloat(), viewHolder.itemView.right.toFloat(), viewHolder.itemView.bottom.toFloat(), paint)
                     c.drawBitmap(deleteBitmap, viewHolder.itemView.right.toFloat() - starBitmap.width * 1.5.toFloat(), viewHolder.itemView.top.toFloat() + (viewHolder.itemView.height - starBitmap.height) / 2, paint)
                 }
