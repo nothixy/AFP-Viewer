@@ -44,5 +44,4 @@ dependencies {
     implementation "androidx.transition:transition-ktx:1.4.0"
     implementation "androidx.preference:preference-ktx:1.1.1"
     implementation 'androidx.swiperefreshlayout:swiperefreshlayout:1.1.0'
-    implementation 'com.google.android:flexbox:2.0.1'
 }
