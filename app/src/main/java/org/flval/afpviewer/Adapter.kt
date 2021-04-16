@@ -54,7 +54,7 @@ class Adapter(private val dataSets: ArrayList<JSONObject>, private var context: 
         val snackbar: Snackbar = Snackbar.make(view, message, Snackbar.LENGTH_SHORT)
         snackbar.anchorView = bottomNavigationView
         if (action) {
-            snackbar.setAction("Cancel") {
+            snackbar.setAction(this.context.getString(R.string.cancel)) {
                 val file = File(context.filesDir, removed.getString("uno"))
                 file.writeText(removed.toString())
                 dataSets.add(position, removed)
@@ -69,8 +69,7 @@ class Adapter(private val dataSets: ArrayList<JSONObject>, private var context: 
             val dataSet = dataSets[position]
             val location = File(context.filesDir, dataSet.getString("uno"))
             location.writeText(dataSet.toString())
-            //val location = File(context.filesDir, "saved.txt")
-            //location.appendText(dataSet.getString("uno") + "\r\n")
+
         } else {
             return
         }

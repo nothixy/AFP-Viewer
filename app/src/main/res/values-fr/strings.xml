@@ -31,4 +31,13 @@
     <string name="user_feed">Flux utilisateur</string>
     <string name="saved">Sauvegardé</string>
     <string name="about">A propos</string>
+    <string name="notopicsset">Pas de sujets choisis</string>
+    <string name="gotosettings">Aller dans les réglages</string>
+    <string name="ok">OK</string>
+    <string name="missingdata">Données manquantes</string>
+    <string name="missingunamepwd">Nom d\'utilisateur ou mot de passe manquant</string>
+    <string name="missingaccesscode">Code d\'accès manquant</string>
+    <string name="removed">Supprimé</string>
+    <string name="savedforlater">Sauvegardé pour plus tard</string>
+    <string name="cancel">Annuler</string>
 </resources>

@@ -4,7 +4,6 @@ import android.annotation.SuppressLint
 import android.content.Context
 import android.content.DialogInterface
 import android.content.Intent
-import android.content.res.Resources
 import android.graphics.Bitmap
 import android.graphics.Canvas
 import android.graphics.Color
@@ -13,13 +12,10 @@ import android.graphics.drawable.Drawable
 import android.net.ConnectivityManager
 import android.net.NetworkCapabilities
 import android.os.Bundle
-import android.util.Log
 import android.view.View
 import android.widget.LinearLayout
 import android.widget.ProgressBar
-import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
-import androidx.appcompat.view.ContextThemeWrapper
 import androidx.core.content.ContextCompat
 import androidx.preference.PreferenceManager
 import androidx.recyclerview.widget.ItemTouchHelper
@@ -66,7 +62,7 @@ class MainActivity: AppCompatActivity() {
         val refreshLayout: SwipeRefreshLayout = findViewById(R.id.swiperefresh)
         val sharedPreferences = PreferenceManager.getDefaultSharedPreferences(this)
         number = sharedPreferences.getInt("number", 50)
-        topics = (sharedPreferences.getString("topics", "coronavirus,usa").toString().split(",")).toTypedArray()
+        topics = (sharedPreferences.getString("topics", "").toString().split(",")).toTypedArray()
         lang = sharedPreferences.getString("lang", "en").toString()
         loginMode = sharedPreferences.getString("loginMode", "anon").toString()
         when (loginMode) {
@@ -78,11 +74,13 @@ class MainActivity: AppCompatActivity() {
                 if (accessCode != "")
                     endURL = "grant_type=authorization_code&code=$accessCode"
                 else
-                    alertDialog.setTitle("Missing data").setMessage("Access code missing, please enter it in settings").setPositiveButton("Go to settings"
+                    alertDialog.setTitle(getString(R.string.missingdata))
+                        .setMessage(getString(R.string.missingaccesscode))
+                        .setPositiveButton(getString(R.string.gotosettings)
                     ) { _: DialogInterface, _: Int ->
                         val intent = Intent(this.applicationContext, SettingActivity::class.java)
                         startActivityForResult(intent, 5555)
-                    }.setNegativeButton("OK", null).show()
+                    }.setNegativeButton(getString(R.string.ok), null).show()
                     endURL = "grant_type=anonymous"
             }
             "perm" -> {
@@ -91,15 +89,15 @@ class MainActivity: AppCompatActivity() {
                 endURL = if ((username != "") and (username != ""))
                     "username=$username&password=$password&grant_type=password"
                 else {
-                    alertDialog.setTitle("Missing data")
-                        .setMessage("Username or password missing, please enter it in settings")
+                    alertDialog.setTitle(getString(R.string.missingdata))
+                        .setMessage(getString(R.string.missingunamepwd))
                         .setPositiveButton(
-                            "Go to settings"
+                            getString(R.string.gotosettings)
                         ) { _: DialogInterface, _: Int ->
                             val intent =
                                 Intent(this.applicationContext, SettingActivity::class.java)
                             startActivityForResult(intent, 5555)
-                        }.setNegativeButton("OK", null).show()
+                        }.setNegativeButton(getString(R.string.ok), null).show()
                     "grant_type=anonymous"
                 }
             }
@@ -138,11 +136,11 @@ class MainActivity: AppCompatActivity() {
             override fun onSwiped(viewHolder: RecyclerView.ViewHolder, direction: Int) {
                 if (direction == ItemTouchHelper.LEFT) {
                     val adapter = rcv.adapter as Adapter
-                    adapter.removeAt(position = viewHolder.bindingAdapterPosition, view = rcv, message = "Removed", action = true, saved =  isSaved, bottomNavigationView = findViewById(R.id.bottomAppBar))
+                    adapter.removeAt(position = viewHolder.bindingAdapterPosition, view = rcv, message = getString(R.string.removed), action = true, saved =  isSaved, bottomNavigationView = findViewById(R.id.bottomAppBar))
                 } else if (direction == ItemTouchHelper.RIGHT) {
                     val adapter = rcv.adapter as Adapter
                     adapter.saveForLater(position = viewHolder.bindingAdapterPosition, isSaved = isSaved)
-                    adapter.removeAt(position = viewHolder.bindingAdapterPosition, view = rcv, message = "Saved for later", action = false, saved = false, bottomNavigationView = findViewById(R.id.bottomAppBar))
+                    adapter.removeAt(position = viewHolder.bindingAdapterPosition, view = rcv, message = getString(R.string.savedforlater), action = false, saved = false, bottomNavigationView = findViewById(R.id.bottomAppBar))
                 }
             }
         }
@@ -217,24 +215,37 @@ class MainActivity: AppCompatActivity() {
                     true
                 }
                 R.id.userfeed -> {
-                    if (previousView != 2) {
-                        previousView = 2
-                        isSaved = false
-                        Thread {
-                            jsonData = downloadData(token, 1)
-                            runOnUiThread {
-                                if (jsonData != null) {
-                                    adapter = Adapter(jsonData!!, this.applicationContext, token)
-                                    rcv.adapter = adapter
-                                    (rcv.adapter as RecyclerView.Adapter).notifyDataSetChanged()
-                                    empty.visibility = View.GONE
-                                    rcv.visibility = View.VISIBLE
-                                } else {
-                                    empty.visibility = View.VISIBLE
-                                    rcv.visibility = View.GONE
+                    if ((topics.size == 1) and (topics[0] == "")) {
+                        alertDialog.setTitle(getString(R.string.missingdata))
+                            .setMessage(getString(R.string.notopicsset))
+                            .setPositiveButton(
+                                getString(R.string.gotosettings)
+                            ) { _: DialogInterface, _: Int ->
+                                val intent =
+                                    Intent(this.applicationContext, SettingActivity::class.java)
+                                startActivityForResult(intent, 5555)
+                            }.setNegativeButton(getString(R.string.ok), null).show()
+                    } else {
+                        if (previousView != 2) {
+                            previousView = 2
+                            isSaved = false
+                            Thread {
+                                jsonData = downloadData(token, 1)
+                                runOnUiThread {
+                                    if (jsonData != null) {
+                                        adapter =
+                                            Adapter(jsonData!!, this.applicationContext, token)
+                                        rcv.adapter = adapter
+                                        (rcv.adapter as RecyclerView.Adapter).notifyDataSetChanged()
+                                        empty.visibility = View.GONE
+                                        rcv.visibility = View.VISIBLE
+                                    } else {
+                                        empty.visibility = View.VISIBLE
+                                        rcv.visibility = View.GONE
+                                    }
                                 }
-                            }
-                        }.start()
+                            }.start()
+                        }
                     }
                     true
                 }
@@ -326,7 +337,6 @@ class MainActivity: AppCompatActivity() {
             2 -> {
                 val articles: ArrayList<JSONObject> = ArrayList()
                 for (file in filesDir.listFiles()!!) {
-                    Log.d("FILE", file.name)
                     articles.add(JSONObject(file.readText()))
                 }
                 return if (articles.size > 0)

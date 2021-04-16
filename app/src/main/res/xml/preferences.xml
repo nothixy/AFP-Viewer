@@ -3,7 +3,8 @@
     xmlns:android="http://schemas.android.com/apk/res/android">
     <PreferenceCategory android:title="@string/login">
         <ListPreference
-            android:defaultValue="0"
+            android:defaultValue="anon"
+            app:useSimpleSummaryProvider="true"
             android:entries="@array/loginmode"
             android:entryValues="@array/loginmode_values"
             android:key="loginMode"
@@ -56,10 +57,10 @@
     <PreferenceCategory android:title="@string/about">
         <Preference
             android:id="@+id/sourcecode"
-            android:summary="https://gitlab.com/srgoti/afpviewer"
+            android:summary="https://gitlab.com/srgoti/afp-viewer"
             android:title="@string/sourcecode" >
             <intent android:action="android.intent.action.VIEW"
-                android:data="https://gitlab.com/srgoti/afpviewer" />
+                android:data="https://gitlab.com/srgoti/afp-viewer" />
         </Preference>
     </PreferenceCategory>
 </PreferenceScreen>

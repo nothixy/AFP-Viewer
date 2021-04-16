@@ -63,7 +63,6 @@ class MLTAdapter(private val dataSets: ArrayList<JSONObject>, private val token:
             }
         } catch (e: Exception) {
             holder.imageView.visibility = View.GONE
-            //holder.tagsTextView.visibility = View.GONE
         }
         holder.cardView.setOnClickListener {
 

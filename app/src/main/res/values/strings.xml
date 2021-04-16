@@ -31,4 +31,13 @@
     <string name="user_feed">User feed</string>
     <string name="saved">Saved</string>
     <string name="about">About</string>
+    <string name="notopicsset">No topics set</string>
+    <string name="gotosettings">Go to settings</string>
+    <string name="ok">OK</string>
+    <string name="missingdata">Missing data</string>
+    <string name="missingunamepwd">Missing username or password</string>
+    <string name="missingaccesscode">Missing access code</string>
+    <string name="removed">Removed</string>
+    <string name="savedforlater">Saved for later</string>
+    <string name="cancel">Cancel</string>
 </resources>
