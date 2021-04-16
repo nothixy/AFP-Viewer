@@ -70,6 +70,8 @@ assembleDebug:
   artifacts:
     paths:
       - app/build/outputs/apk/debug/*.apk
+    reports:
+      junit: app/build/outputs/apk/debug/*.apk
 
 # Run all tests, if any fails, interrupt the pipeline(fail it)
 debugTests:
