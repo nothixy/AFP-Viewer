@@ -57,10 +57,10 @@
     <PreferenceCategory android:title="@string/about">
         <Preference
             android:id="@+id/sourcecode"
-            android:summary="https://gitlab.com/srgoti/afp-viewer"
+            android:summary="https://github.com/srgoti/afp-viewer"
             android:title="@string/sourcecode" >
             <intent android:action="android.intent.action.VIEW"
-                android:data="https://gitlab.com/srgoti/afp-viewer" />
+                android:data="https://github.com/srgoti/afp-viewer" />
         </Preference>
     </PreferenceCategory>
 </PreferenceScreen>
