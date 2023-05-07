@@ -23,6 +23,7 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import androidx.swiperefreshlayout.widget.SwipeRefreshLayout
 import com.google.android.material.bottomnavigation.BottomNavigationView
+import com.google.android.material.color.DynamicColors
 import com.google.android.material.dialog.MaterialAlertDialogBuilder
 import org.json.JSONObject
 import java.io.BufferedInputStream
@@ -42,8 +43,10 @@ class MainActivity: AppCompatActivity() {
     private var username: String = ""
     private var password: String = ""
     private var endURL: String = ""
+    private var apiURL: String = "https://afp-apicore-prod.afp.com"
     @SuppressLint("NotifyDataSetChanged")
     override fun onCreate(savedInstanceState: Bundle?) {
+
         super.onCreate(savedInstanceState)
         setContentView(R.layout.main)
 
@@ -281,12 +284,13 @@ class MainActivity: AppCompatActivity() {
         }
     }
 
+    @Deprecated("Deprecated in Java")
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
         super.onActivityResult(requestCode, resultCode, data)
         bottomNavigationView.selectedItemId = bottomNavigationView.menu.getItem(previousView).itemId
     }
     private fun fetchToken(endURL: String): String {
-        val url = URL("https://api.afp.com/oauth/token?$endURL")
+        val url = URL("$apiURL/oauth/token?$endURL")
         val connection = url.openConnection()
         connection.setRequestProperty("Allow", "application/json")
         val inputStream: InputStream = BufferedInputStream(connection.getInputStream())
@@ -299,7 +303,7 @@ class MainActivity: AppCompatActivity() {
         var url: URL
         when (feedMode) {
             0 -> {
-                url = URL("https://api.afp.com:443/v1/api/search?lang=$lang&size=$number&q=*%3A*&c=false&sort=published%20desc&tz=GMT&gap=day&to=now&wt=xml&access_token=$token")
+                url = URL("$apiURL/v1/api/search?lang=$lang&size=$number&q=*%3A*&c=false&sort=published%20desc&tz=GMT&gap=day&to=now&wt=xml&access_token=$token")
                 val connection = url.openConnection()
                 connection.setRequestProperty("Allow", "application/json")
                 val inputStream: InputStream = BufferedInputStream(connection.getInputStream())
@@ -318,7 +322,7 @@ class MainActivity: AppCompatActivity() {
             1 -> {
                 val articles: ArrayList<JSONObject> = ArrayList()
                 for (element in topics) {
-                    url = URL("https://api.afp.com:443/v1/api/search?lang=$lang&size=$number&q=*:$element&c=false&sort=published%20desc&tz=GMT&gap=day&to=now&wt=xml&access_token=$token")
+                    url = URL("$apiURL/v1/api/search?lang=$lang&size=$number&q=*:$element&c=false&sort=published%20desc&tz=GMT&gap=day&to=now&wt=xml&access_token=$token")
                     val connection = url.openConnection()
                     connection.setRequestProperty("Allow", "application/json")
                     val inputStream: InputStream = BufferedInputStream(connection.getInputStream())

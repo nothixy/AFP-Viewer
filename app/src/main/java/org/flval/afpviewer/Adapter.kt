@@ -97,7 +97,11 @@ class Adapter(private val dataSets: ArrayList<JSONObject>, private var context: 
                 Thread {
                     val drawable = loadImage(URL(href))
                     runOnUiThread {
-                        holder.imageView.setImageDrawable(drawable)
+                        if (drawable != null) {
+                            holder.imageView.setImageDrawable(drawable)
+                        } else {
+                            holder.loader.visibility = View.GONE
+                        }
                         holder.loader.visibility = View.GONE
                     }
                 }.start()
@@ -151,8 +155,12 @@ class Adapter(private val dataSets: ArrayList<JSONObject>, private var context: 
             holder.cardView.context.startActivity(intent, options.toBundle())
         }
     }
-    private fun loadImage(url: URL): Drawable {
-        return Drawable.createFromStream(url.openStream(), "src")
+    private fun loadImage(url: URL): Drawable? {
+        try {
+            return Drawable.createFromStream(url.openStream(), "src")
+        } catch (e: Exception) {
+            return null
+        }
     }
     private fun runOnUiThread(action: Runnable) {
         if (Thread.currentThread() != mUiThread) {

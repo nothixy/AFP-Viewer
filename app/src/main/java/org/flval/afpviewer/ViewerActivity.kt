@@ -43,7 +43,11 @@ class ViewerActivity: AppCompatActivity() {
                     Thread {
                         val imageDrawable = loadImage(URL(href))
                         runOnUiThread {
-                            imageView.setImageDrawable(imageDrawable)
+                            if (imageDrawable != null) {
+                                imageView.setImageDrawable(imageDrawable)
+                            } else {
+                                imageView.visibility = View.GONE
+                            }
                             loader.visibility = View.GONE
                         }
                     }.start()
@@ -64,7 +68,11 @@ class ViewerActivity: AppCompatActivity() {
                 Thread {
                     val imageDrawable = loadImage(URL(href))
                     runOnUiThread {
-                        iV.setImageDrawable(imageDrawable)
+                        if (imageDrawable != null) {
+                            iV.setImageDrawable(imageDrawable)
+                        } else {
+                            iV.visibility = View.GONE
+                        }
                     }
                 }.start()
             }
@@ -116,7 +124,7 @@ class ViewerActivity: AppCompatActivity() {
         }.start()
     }
     private fun loadDataRelated(uno: String, token: String): ArrayList<JSONObject>? {
-        val url = URL("https://api.afp.com:443/v1/api/mlt?uno=$uno&lang=en&size=50&tz=GMT&c=false&gap=day&sort=published%20desc&to=now&wt=xml&access_token=$token")
+        val url = URL("https://afp-apicore-prod.afp.com/v1/api/mlt?uno=$uno&lang=en&size=50&tz=GMT&c=false&gap=day&sort=published%20desc&to=now&wt=xml&access_token=$token")
         val connection = url.openConnection()
         connection.setRequestProperty("Allow", "application/json")
         val inputStream: InputStream = BufferedInputStream(connection.getInputStream())
@@ -134,7 +142,11 @@ class ViewerActivity: AppCompatActivity() {
             null
         }
     }
-    private fun loadImage(url: URL): Drawable {
-        return Drawable.createFromStream(url.openStream(), "src")
+    private fun loadImage(url: URL): Drawable? {
+        try {
+            return Drawable.createFromStream(url.openStream(), "src")
+        } catch (e: Exception) {
+            return null
+        }
     }
 }

@@ -55,7 +55,11 @@ class MLTAdapter(private val dataSets: ArrayList<JSONObject>, private val token:
                 Thread {
                     val drawable = loadImage(URL(href))
                     runOnUiThread {
-                        holder.imageView.setImageDrawable(drawable)
+                        if (drawable != null) {
+                            holder.imageView.setImageDrawable(drawable)
+                        } else {
+                            holder.imageView.visibility = View.GONE
+                        }
                     }
                 }.start()
             } catch (e: Exception) {
@@ -85,8 +89,12 @@ class MLTAdapter(private val dataSets: ArrayList<JSONObject>, private val token:
             holder.cardView.context.startActivity(intent, options.toBundle())
         }
     }
-    private fun loadImage(url: URL): Drawable {
-        return Drawable.createFromStream(url.openStream(), "src")
+    private fun loadImage(url: URL): Drawable? {
+        try {
+            return Drawable.createFromStream(url.openStream(), "src")
+        } catch (e: Exception) {
+            return null
+        }
     }
     private fun runOnUiThread(action: Runnable) {
         if (Thread.currentThread() != mUiThread) {

@@ -44,7 +44,7 @@ class SettingActivity: AppCompatActivity() {
             }
         }
         override fun onDestroy() {
-            val sharedPreferences = PreferenceManager.getDefaultSharedPreferences(this.context)
+            val sharedPreferences = PreferenceManager.getDefaultSharedPreferences(this.requireContext())
             sharedPreferences.unregisterOnSharedPreferenceChangeListener(this)
             super.onDestroy()
         }
@@ -53,7 +53,7 @@ class SettingActivity: AppCompatActivity() {
             val accessCodeTextInput: EditTextPreference? = findPreference("accessCode")
             val usernameTextInput: EditTextPreference? = findPreference("username")
             val passwordTextInput: EditTextPreference? = findPreference("password")
-            when (PreferenceManager.getDefaultSharedPreferences(this.context).getString("loginMode", "auto").toString()) {
+            when (PreferenceManager.getDefaultSharedPreferences(this.requireContext()).getString("loginMode", "auto").toString()) {
                 "anon" -> {
                     accessCodeTextInput?.isEnabled = false
                     usernameTextInput?.isEnabled = false
@@ -70,7 +70,7 @@ class SettingActivity: AppCompatActivity() {
                     passwordTextInput?.isEnabled = true
                 }
             }
-            val sharedPreferences = PreferenceManager.getDefaultSharedPreferences(this.context)
+            val sharedPreferences = PreferenceManager.getDefaultSharedPreferences(this.requireContext())
             sharedPreferences.registerOnSharedPreferenceChangeListener(this)
         }
     }

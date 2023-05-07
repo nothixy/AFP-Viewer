@@ -34,8 +34,6 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_alignParentBottom="true"
-            app:itemIconTint="@color/itemcolors"
-            app:itemTextColor="@color/itemcolors"
             app:layout_behavior="com.google.android.material.behavior.HideBottomViewOnScrollBehavior"
             app:menu="@menu/bottomappbar">
 
@@ -55,12 +53,12 @@
         app:layout_constraintTop_toTopOf="parent"
         tools:ignore="UseCompoundDrawables">
 
-        <ImageView
-            android:layout_width="200dp"
-            android:layout_height="200dp"
-            app:srcCompat="@drawable/ic_baseline_airplanemode_active_24"
-            app:tint="@color/ic_launcher_background"
-            android:contentDescription="@string/airplane_icon" />
+            <ImageView
+                android:id="@+id/airplaneImage"
+                android:layout_width="200dp"
+                android:layout_height="200dp"
+                android:contentDescription="@string/airplane_icon"
+                app:srcCompat="@drawable/ic_baseline_airplanemode_active_24" />
 
         <TextView
             android:id="@+id/textView"
@@ -74,14 +72,11 @@
         android:id="@+id/progressBar"
         android:layout_width="100dp"
         android:layout_height="100dp"
-        android:progressTint="@color/ic_launcher_background"
-        android:tint="@color/ic_launcher_background"
         android:visibility="visible"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:tint="@color/ic_launcher_background" />
+        app:layout_constraintTop_toTopOf="parent" />
 
     <LinearLayout
         android:id="@+id/empty"
@@ -98,10 +93,9 @@
         <ImageView
             android:layout_width="200dp"
             android:layout_height="200dp"
+            android:contentDescription="@string/nothing"
             android:visibility="visible"
-            app:srcCompat="@drawable/ic_baseline_do_not_disturb_alt_24"
-            app:tint="@color/ic_launcher_background"
-            android:contentDescription="@string/nothing" />
+            app:srcCompat="@drawable/ic_baseline_do_not_disturb_alt_24" />
 
         <TextView
             android:layout_width="match_parent"
