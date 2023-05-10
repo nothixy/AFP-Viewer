@@ -88,7 +88,7 @@ class ViewerActivity: AppCompatActivity() {
         fab.setOnClickListener {
             val sendIntent: Intent = Intent().apply {
                 action = Intent.ACTION_SEND
-                putExtra(Intent.EXTRA_TEXT, "https://srgoti.gitlab.io/afp/afpviewerpage.html?uno=$uno")
+                putExtra(Intent.EXTRA_TEXT, "https://hixy.tk/afp/afpviewerpage.html?uno=$uno")
                 putExtra(Intent.EXTRA_TITLE, titleTextView.text)
                 type = "text/plain"
             }

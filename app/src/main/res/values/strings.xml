@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name" translatable="false">AFP Viewer</string>
+    <string name="app_name" translatable="false">QuickNews</string>
     <string name="anon">Anonymous mode</string>
     <string name="temp">Temporary access (auth code)</string>
     <string name="perm">Permanent access (AFP account)</string>
