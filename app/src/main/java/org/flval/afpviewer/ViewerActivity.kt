@@ -13,6 +13,7 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.core.content.ContextCompat
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
+import com.google.android.material.elevation.SurfaceColors
 import com.google.android.material.floatingactionbutton.FloatingActionButton
 import org.json.JSONArray
 import org.json.JSONObject
@@ -27,6 +28,7 @@ class ViewerActivity: AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.viewer)
+        window.statusBarColor = SurfaceColors.SURFACE_0.getColor(this)
         val imageView: ImageView = findViewById(R.id.imageView)
         token = intent.getStringExtra("token")!!
         val data = intent.getSerializableExtra("data") as String

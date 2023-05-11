@@ -24,6 +24,7 @@ import androidx.recyclerview.widget.RecyclerView
 import androidx.swiperefreshlayout.widget.SwipeRefreshLayout
 import com.google.android.material.bottomnavigation.BottomNavigationView
 import com.google.android.material.dialog.MaterialAlertDialogBuilder
+import com.google.android.material.elevation.SurfaceColors
 import org.json.JSONObject
 import java.io.BufferedInputStream
 import java.io.InputStream
@@ -48,6 +49,8 @@ class MainActivity: AppCompatActivity() {
 
         super.onCreate(savedInstanceState)
         setContentView(R.layout.main)
+
+        window.statusBarColor = SurfaceColors.SURFACE_0.getColor(this)
 
         val alertDialog = MaterialAlertDialogBuilder(this@MainActivity)
         val star: Drawable? = ContextCompat.getDrawable(this.applicationContext, R.drawable.ic_baseline_star_24)

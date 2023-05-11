@@ -6,12 +6,14 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.preference.EditTextPreference
 import androidx.preference.PreferenceFragmentCompat
 import androidx.preference.PreferenceManager
+import com.google.android.material.elevation.SurfaceColors
 
 class SettingActivity: AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.settings)
+        window.statusBarColor = SurfaceColors.SURFACE_0.getColor(this)
         supportFragmentManager.beginTransaction().replace(R.id.settview,
             SettingsFragment()
         ).commit()
